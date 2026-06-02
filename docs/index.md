@@ -15,11 +15,11 @@ terraform {
 }
 
 provider "mssql" {
-  debug                   = false
-  max_open_connections    = 10
-  max_idle_connections    = 10
-  connection_max_lifetime = 300
-  connection_max_idle_time = 120
+  debug                    = false
+  max_open_connections     = 0
+  max_idle_connections     = 2
+  connection_max_lifetime  = 0
+  connection_max_idle_time = 0
 }
 
 resource "mssql_login" "example" {
@@ -52,7 +52,7 @@ resource "mssql_user" "example" {
 The following arguments are supported:
 
 * `debug` - (Optional) Either `false` or `true`. Defaults to `false`. If `true`, the provider will write a debug log to `terraform-provider-mssql.log`.
-* `max_open_connections` - (Optional) Maximum number of open connections to the database. Limits concurrent sessions to prevent exhausting server session limits. Defaults to `10`.
-* `max_idle_connections` - (Optional) Maximum number of idle connections kept in the pool, ready for reuse. Avoids the latency of establishing new connections under load. Defaults to `10`.
-* `connection_max_lifetime` - (Optional) Maximum lifetime of a connection in seconds. Expired connections are closed gracefully after use. Set to `0` for unlimited. Defaults to `300`.
-* `connection_max_idle_time` - (Optional) Maximum time in seconds a connection may be idle before being closed. Helps free resources from unused connections. Set to `0` to disable. Defaults to `120`.
+* `max_open_connections` - (Optional) Maximum number of open connections to the database. If set to 0, there is no limit on the number of open connections. Defaults to `0`.
+* `max_idle_connections` - (Optional) Maximum number of idle connections in the pool. If set to 0, no idle connections are retained. Defaults to `2`.
+* `connection_max_lifetime` - (Optional) Maximum lifetime of a connection in seconds. If set to 0, connections are not closed due to a connection's age. Defaults to `0`.
+* `connection_max_idle_time` - (Optional) Maximum time in seconds a connection may be idle before being closed. If set to 0, connections are not closed due to a connection's idle time. Defaults to `0`.

@@ -95,17 +95,17 @@ func TestMakeRegistryKey_DifferentInputsDifferentKey(t *testing.T) {
 func TestDefaultPoolConfig(t *testing.T) {
 	config := DefaultPoolConfig()
 
-	if config.MaxOpenConnections != 10 {
-		t.Errorf("expected MaxOpenConnections=10, got %d", config.MaxOpenConnections)
+	if config.MaxOpenConnections != 0 {
+		t.Errorf("expected MaxOpenConnections=0, got %d", config.MaxOpenConnections)
 	}
-	if config.MaxIdleConnections != 10 {
-		t.Errorf("expected MaxIdleConnections=10, got %d", config.MaxIdleConnections)
+	if config.MaxIdleConnections != 2 {
+		t.Errorf("expected MaxIdleConnections=2, got %d", config.MaxIdleConnections)
 	}
-	if config.ConnectionMaxLifetime != 5*time.Minute {
-		t.Errorf("expected ConnectionMaxLifetime=5m, got %v", config.ConnectionMaxLifetime)
+	if config.ConnectionMaxLifetime != 0 {
+		t.Errorf("expected ConnectionMaxLifetime=0, got %v", config.ConnectionMaxLifetime)
 	}
-	if config.ConnectionMaxIdleTime != 2*time.Minute {
-		t.Errorf("expected ConnectionMaxIdleTime=2m, got %v", config.ConnectionMaxIdleTime)
+	if config.ConnectionMaxIdleTime != 0 {
+		t.Errorf("expected ConnectionMaxIdleTime=0, got %v", config.ConnectionMaxIdleTime)
 	}
 }
 

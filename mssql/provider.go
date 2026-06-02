@@ -45,27 +45,27 @@ func Provider(factory model.ConnectorFactory) *schema.Provider {
 			},
 			"max_open_connections": {
 				Type:        schema.TypeInt,
-				Description: "Maximum number of open connections to the database. Limits concurrent sessions to prevent exhausting server session limits.",
+				Description: "Maximum number of open connections to the database. Limits concurrent sessions to prevent exhausting server session limits. Set to 0 for unlimited.",
 				Optional:    true,
-				Default:     10,
+				Default:     0,
 			},
 			"max_idle_connections": {
 				Type:        schema.TypeInt,
 				Description: "Maximum number of idle connections kept in the pool, ready for reuse. Avoids the latency of establishing new connections under load.",
 				Optional:    true,
-				Default:     10,
+				Default:     2,
 			},
 			"connection_max_lifetime": {
 				Type:        schema.TypeInt,
 				Description: "Maximum lifetime of a connection in seconds. Expired connections are closed gracefully after use. Set to 0 for unlimited.",
 				Optional:    true,
-				Default:     300,
+				Default:     0,
 			},
 			"connection_max_idle_time": {
 				Type:        schema.TypeInt,
 				Description: "Maximum time in seconds a connection may be idle before being closed. Helps free resources from unused connections. Set to 0 to disable.",
 				Optional:    true,
-				Default:     120,
+				Default:     0,
 			},
 		},
 		ResourcesMap: map[string]*schema.Resource{

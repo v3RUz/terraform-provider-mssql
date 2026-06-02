@@ -186,8 +186,8 @@ func TestProvider_PoolConfigSchemaDefaults(t *testing.T) {
 	if !ok {
 		t.Fatal("expected max_open_connections in provider schema")
 	}
-	if s.Default != 10 {
-		t.Errorf("expected max_open_connections default=10, got %v", s.Default)
+	if s.Default != 0 {
+		t.Errorf("expected max_open_connections default=0, got %v", s.Default)
 	}
 	if !s.Optional {
 		t.Error("expected max_open_connections to be optional")
@@ -197,24 +197,24 @@ func TestProvider_PoolConfigSchemaDefaults(t *testing.T) {
 	if !ok {
 		t.Fatal("expected max_idle_connections in provider schema")
 	}
-	if s.Default != 10 {
-		t.Errorf("expected max_idle_connections default=10, got %v", s.Default)
+	if s.Default != 2 {
+		t.Errorf("expected max_idle_connections default=2, got %v", s.Default)
 	}
 
 	s, ok = p.Schema["connection_max_lifetime"]
 	if !ok {
 		t.Fatal("expected connection_max_lifetime in provider schema")
 	}
-	if s.Default != 300 {
-		t.Errorf("expected connection_max_lifetime default=300, got %v", s.Default)
+	if s.Default != 0 {
+		t.Errorf("expected connection_max_lifetime default=0, got %v", s.Default)
 	}
 
 	s, ok = p.Schema["connection_max_idle_time"]
 	if !ok {
 		t.Fatal("expected connection_max_idle_time in provider schema")
 	}
-	if s.Default != 120 {
-		t.Errorf("expected connection_max_idle_time default=120, got %v", s.Default)
+	if s.Default != 0 {
+		t.Errorf("expected connection_max_idle_time default=0, got %v", s.Default)
 	}
 }
 
